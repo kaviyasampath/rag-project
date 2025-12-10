@@ -1,0 +1,9 @@
+venv/
+data/
+cleaned_text/
+extracted_text/
+chunks/
+chromadb/
+__pycache__/
+*.pdf
+*.docx
