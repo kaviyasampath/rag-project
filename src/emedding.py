@@ -4,13 +4,10 @@ import chromadb
 
 CHUNKS_DIR = r"C:\Users\KAVYA\OneDrive\Desktop\naac_project\chunks"
 
-# Initialize ChromaDB client
-client = chromadb.Client()
+client = chromadb.PersistentClient(path="C:/Users/KAVYA/OneDrive/Desktop/naac_project/chromadb")
 
-# Create or load a collection
-collection = client.create_collection(name="naac_chunks")
+collection = client.get_or_create_collection(name="naac_chunks")
 
-# Load embedding model (offline)
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 

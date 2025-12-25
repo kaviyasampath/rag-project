@@ -1,11 +1,9 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-# Load Chroma client
-client = chromadb.Client()
+client = chromadb.PersistentClient(path="C:/Users/KAVYA/OneDrive/Desktop/naac_project/chromadb")
+collection = client.get_or_create_collection(name="naac_chunks")
 
-# Load the collection created earlier
-collection = client.get_collection(name="naac_chunks")
 
 # Load the same embedding model used during indexing
 model = SentenceTransformer("all-MiniLM-L6-v2")

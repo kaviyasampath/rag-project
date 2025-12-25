@@ -8,13 +8,8 @@ OUTPUT_DIR = r"C:\Users\KAVYA\OneDrive\Desktop\naac_project\cleaned_text"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def clean_text(text):
-    # Remove multiple spaces/newlines
     text = re.sub(r'\s+', ' ', text)
-
-    # Remove non-ASCII characters
     text = text.encode("ascii", "ignore").decode()
-
-    # Remove page numbers like "Page 2", "2/20", etc.
     text = re.sub(r'Page\s*\d+|\d+/\d+', '', text, flags=re.IGNORECASE)
 
     return text.strip()
