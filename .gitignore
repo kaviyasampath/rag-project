@@ -7,3 +7,8 @@ chromadb/
 __pycache__/
 *.pdf
 *.docx
+NAAC_Report_2026-01-20_20-01-22.txt
+naac_generated_output.txt
+
+.DS_Store
+Thumbs.db
