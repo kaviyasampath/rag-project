@@ -1,6 +1,8 @@
 import os
 import time
 from datetime import datetime
+from docx import Document
+
 
 from rag_gemini import run_rag
 
@@ -143,6 +145,32 @@ def generate_full_naac_report(k=3, wait_between_sections=60, resume_file=None):
 
     print("\n🎉 REPORT GENERATION COMPLETE!")
     print(f"📄 Final report saved -> {output_file}")
+    
+def save_report_as_docx(text_file, docx_file):
+    doc = Document()
+    doc.add_heading("NAAC SSR REPORT (AUTO-GENERATED)", level=0)
+
+    with open(text_file, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        line = line.strip()
+
+        if not line:
+            doc.add_paragraph("")
+            continue
+
+        # Heading detection (your report uses "=====" separators)
+        if line.startswith("Criterion"):
+            doc.add_heading(line, level=1)
+        elif set(line) == {"="}:
+            continue
+        else:
+            doc.add_paragraph(line)
+
+    doc.save(docx_file)
+    print(f"✅ DOCX saved as: {docx_file}")
+
 
 
 if __name__ == "__main__":
